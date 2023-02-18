@@ -1,14 +1,9 @@
 package br.ufs.dcomp.ChatRabbitMQ;
 
-// import com.rabbitmq.client.*;
-
-// import java.io.IOException;
-
 
 import com.rabbitmq.client.*;
 import java.util.*;
 import java.io.IOException;
-// import com.google.protobuf.ByteString;
 import java.text.*;
 
 public class Chat {
