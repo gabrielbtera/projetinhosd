@@ -7,44 +7,19 @@ import java.io.IOException;
 import java.text.*;
 
 public class Chat {
-  
-  public static String usuarioAtual= ""; 
+  public static String currentUser = "";
+  private static Scanner scanner = new Scanner(System.in);
 
   public static void main(String[] argv) throws Exception {
-    ConnectionFactory factory = new ConnectionFactory();
+    var channelFactory = new ChannelFactory();
+    var channel = channelFactory.createChannel();
 
-    String ipHost = "18.207.112.41";
-    String login = "seu login";
-    String key = "sua senha";
-    
-    factory.setHost(ipHost); // Alterar
-    factory.setUsername(login); // Alterar
-    factory.setPassword(key); // Alterar
-    factory.setVirtualHost("/"); 
-    
-    
-    
+    String username = input("User: ");
 
-    Connection connection = factory.newConnection();
-    Channel channel = connection.createChannel();
+    final String QUEUE_NAME = username;
+    channel.queueDeclare(username, false,   false,     false,       null);
 
-    Scanner sc = new Scanner(System.in);
-
-    System.out.print("User: ");
-    String user = sc.nextLine();
-
-    String QUEUE_NAME = user;
-                      //(queue-name, durable, exclusive, auto-delete, params); 
-    channel.queueDeclare(QUEUE_NAME, false,   false,     false,       null);
-
-    Consumer consumer = new DefaultConsumer(channel) {
-      public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
-        String message = new String(body, "UTF-8");
-        System.out.println("");
-        System.out.println(message);
-        System.out.print(Chat.usuarioAtual + ">> ");
-      }
-    };
+    Consumer consumer = createConsumer(channel);
 
     DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     DateFormat horaFormat = new SimpleDateFormat("HH:mm");
@@ -53,34 +28,67 @@ public class Chat {
     String data = dateFormat.format(date);
     String hora = horaFormat.format(date);
 
-    String atual = "";
     String prompt = ">> ";
+    String atual = "";
     String line;
-    
-    while(true){
-      
+
+    while (true) {
       channel.basicConsume(QUEUE_NAME, true, consumer);
-      System.out.print(atual + prompt);
-      
-      line = sc.nextLine();
-      
-      while(line.charAt(0) == '@'){
+
+      line = input(atual + prompt);
+
+      while (line.charAt(0) == '@') {
+        currentUser = line;
         
-        Chat.usuarioAtual = line;
-        
-        do{
-          System.out.print(atual + Chat.usuarioAtual + prompt);
+        do {
+          line = input(atual + Chat.currentUser + prompt);
           
-          line = sc.nextLine();
-          if(line.charAt(0) != '@' && line.charAt(0) != '!'){
-            
-            String message = "(" + data + " às " + hora + ") " + Chat.usuarioAtual.substring(1, Chat.usuarioAtual.length()) + " diz: " + line;
-            
-            channel.basicPublish("",Chat.usuarioAtual.substring(1, Chat.usuarioAtual.length()), null,  message.getBytes("UTF-8"));
+          if (line.charAt(0) != '@' && line.charAt(0) != '!') {
+            String message = formatMessage(line);
+            channel.basicPublish("", getUsernameNoFormatting(), null,  message.getBytes("UTF-8"));
           }
         }
         while(line.charAt(0) != '@');
       }
     }
+  }
+
+  private static String formatMessage(String content) {
+    Date now = new Date();
+
+    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+    DateFormat hourFormat = new SimpleDateFormat("HH:mm");
+
+    String dateTimePrefix = "(" + dateFormat.format(now) + " às " + hourFormat.format(now) + ")";
+    String username = getUsernameNoFormatting();
+
+    return dateTimePrefix + " " + username + " diz: " + content;
+  }
+
+  private static String getUsernameNoFormatting() {
+    return currentUser.substring(1);
+  }
+
+  private static String input(String prompt) {
+    System.out.print(prompt);
+    return scanner.nextLine();
+  }
+
+  private static void print(String msg) {
+    System.out.print(msg);
+  }
+  private static void println(String msg) {
+    System.out.println(msg);
+  }
+
+  private static Consumer createConsumer(Channel channel) {
+    return new DefaultConsumer(channel) {
+      public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
+        String message = new String(body, "UTF-8");
+        System.out.println("");
+        System.out.println(message);
+        System.out.print(Chat.currentUser + ">> ");
+      }
+    };
   }
 }
