@@ -1,6 +1,7 @@
 package br.ufs.dcomp.ChatRabbitMQ;
 
 
+import br.ufs.dcomp.ChatRabbitMQ.commands.CommandHandler;
 import com.rabbitmq.client.*;
 import java.util.*;
 import java.io.IOException;
@@ -32,6 +33,8 @@ public class Chat {
     String atual = "";
     String line;
 
+    CommandHandler commandHandler = new CommandHandler();
+
     while (true) {
       channel.basicConsume(QUEUE_NAME, true, consumer);
 
@@ -42,6 +45,10 @@ public class Chat {
         
         do {
           line = input(atual + Chat.currentUser + prompt);
+
+          if (commandHandler.isCommand(line)) {
+            commandHandler.handle(line);
+          }
           
           if (line.charAt(0) != '@' && line.charAt(0) != '!') {
             String message = formatMessage(line);
