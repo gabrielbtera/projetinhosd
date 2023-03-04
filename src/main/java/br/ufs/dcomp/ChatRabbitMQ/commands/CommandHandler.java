@@ -1,5 +1,7 @@
 package br.ufs.dcomp.ChatRabbitMQ.commands;
 
+import br.ufs.dcomp.ChatRabbitMQ.groups.GroupNotFoundException;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +14,7 @@ public class CommandHandler {
         registerCommands();
     }
 
-    public void handle(String commandStr) throws InvalidCommandException {
+    public void handle(String commandStr) throws InvalidCommandException, GroupNotFoundException {
         String parsedCommand = removePrefix(commandStr);
         List<String> tokens = List.of(parsedCommand.split(" "));
 
