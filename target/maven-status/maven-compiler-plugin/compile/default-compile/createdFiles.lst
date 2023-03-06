@@ -1,4 +1,5 @@
 br/ufs/dcomp/ChatRabbitMQ/MensagemProto$MensagemOrBuilder.class
+br/ufs/dcomp/ChatRabbitMQ/ArquivoUpload.class
 br/ufs/dcomp/ChatRabbitMQ/MensagemProto$Conteudo.class
 br/ufs/dcomp/ChatRabbitMQ/Grupo.class
 br/ufs/dcomp/ChatRabbitMQ/MensagemProto$Mensagem.class
@@ -12,3 +13,4 @@ br/ufs/dcomp/ChatRabbitMQ/Chat$1.class
 br/ufs/dcomp/ChatRabbitMQ/MensagemProto$Mensagem$1.class
 br/ufs/dcomp/ChatRabbitMQ/MensagemProto$ConteudoOrBuilder.class
 br/ufs/dcomp/ChatRabbitMQ/MensagemProto$1.class
+br/ufs/dcomp/ChatRabbitMQ/arquivoDownload.class
