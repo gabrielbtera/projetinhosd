@@ -75,7 +75,6 @@ public class Grupo{
         }
     }
 
-    //Verificando comandos (!)
     public void verificaMensagem(String line, String usuario, String destino, String grupo) throws Exception{
         String[] mensagem = line.split(" ");
         switch(mensagem[0]){

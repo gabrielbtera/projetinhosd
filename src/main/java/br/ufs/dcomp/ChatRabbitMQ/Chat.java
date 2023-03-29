@@ -13,7 +13,7 @@ public class Chat {
   public static void main(String[] argv) throws Exception {
     ConnectionFactory factory = new ConnectionFactory();
 
-    String ipHost = "54.144.249.94";
+    String ipHost = "54.174.241.241";
     String login = "gabrielbtera";
     String key = "123456789";
     
@@ -27,8 +27,8 @@ public class Chat {
 
     Connection connection = factory.newConnection();
 
-    Channel channel = connection.createChannel();// fila normal
-    Channel channel_arquivos = connection.createChannel();// fila de arquivos
+    Channel channel = connection.createChannel();
+    Channel channel_arquivos = connection.createChannel();
 
     Scanner sc = new Scanner(System.in);
     Grupo grupo = new Grupo(channel, channel_arquivos);
@@ -52,7 +52,6 @@ public class Chat {
     Consumer consumer = new DefaultConsumer(channel) {
       @Override
       public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
-        //System.out.println("");
        try{
          System.out.println(msg.recebeMessagem(body, user));
        } catch (Exception ex) {
@@ -71,7 +70,6 @@ public class Chat {
     channel.basicConsume(QUEUE_NAME, true, consumer);
     channel_arquivos.basicConsume(QUEUE_NAME_FILE, true, consumer);
 
-    // While principal
     while(line.equals(".") == false){
       System.out.print(Chat.userAtual + prompt + current);
       line = sc.nextLine();
