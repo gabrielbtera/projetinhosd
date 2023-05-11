@@ -1,10 +1,10 @@
 package br.ufs.dcomp.ChatRabbitMQ;
 
 
+import br.ufs.dcomp.ChatRabbitMQ.api.APIClient;
 import com.rabbitmq.client.*;
 import java.util.*;
 import java.io.IOException;
-import java.text.*;
 
 public class Chat {
   
@@ -13,10 +13,14 @@ public class Chat {
   public static void main(String[] argv) throws Exception {
     ConnectionFactory factory = new ConnectionFactory();
 
-    String ipHost = "54.174.241.241";
-    String login = "gabrielbtera";
-    String key = "123456789";
-    
+    // String ipHost = "54.174.241.241";
+    // String login = "gabrielbtera";
+    // String key = "123456789";
+
+    String ipHost = "54.87.169.97";
+    String login= "admin";
+    String key = "password";
+
     factory.setHost(ipHost); // Alterar
     factory.setUsername(login); // Alterar
     factory.setPassword(key); // Alterar
@@ -31,13 +35,12 @@ public class Chat {
     Channel channel_arquivos = connection.createChannel();
 
     Scanner sc = new Scanner(System.in);
-    Grupo grupo = new Grupo(channel, channel_arquivos);
+    System.out.print("User: ");
+    String user = sc.nextLine();
+
+    Grupo grupo = new Grupo(channel, channel_arquivos, new APIClient("http://" + ipHost, login, key), user);
 
     Mensagem msg = new Mensagem();
-
-    System.out.print("User: ");
-    
-    String user = sc.nextLine();
     String nomeGrupo = "";
     msg.criarDiretorio(user);
     String QUEUE_NAME = user;

@@ -1,17 +1,23 @@
 package br.ufs.dcomp.ChatRabbitMQ;
+import br.ufs.dcomp.ChatRabbitMQ.api.APIClient;
 import com.rabbitmq.client.*;
-import java.util.*;
+
 import java.io.IOException;
 public class Grupo{
 
 // -------------------------------- GERENCIANDO GRUPO --------------------------------------- 
     public Channel channel;
     public Channel channelArquivo;
+
+    private APIClient client;
+    private String username;
     Mensagem msg = new Mensagem();
 
-    public Grupo(Channel channel, Channel channelArquivo){
+    public Grupo(Channel channel, Channel channelArquivo, APIClient client, String username){
         this.channel = channel;
         this.channelArquivo = channelArquivo;
+        this.client = client;
+        this.username = username;
     }
 
     //Criando grupos
@@ -43,7 +49,7 @@ public class Grupo{
             channel.queueBind(usuario,nomeGrupo,"");
             channel.queueBind(usuario + "F",nomeGrupo + "F","");
         }catch(IOException ex){
-            System.out.println (ex.toString());
+            System.out.println (ex.getMessage());
         }
     }
     
@@ -75,6 +81,14 @@ public class Grupo{
         }
     }
 
+    public void listarUsuariosGrupo(String grupo) {
+        client.getUsers(grupo);
+    }
+
+    public void listarGrupos() {
+        client.getGroups(username);
+    }
+
     public void verificaMensagem(String line, String usuario, String destino, String grupo) throws Exception{
         String[] mensagem = line.split(" ");
         switch(mensagem[0]){
@@ -101,7 +115,16 @@ public class Grupo{
           case "!upload":
             enviarArquivo(mensagem[1], destino, usuario, grupo);
             System.out.println("arquivo enviado com sucesso!");
-            break;  
+            break;
+        case "!listUsers":
+            String nomeGrupo = mensagem[1];
+            listarUsuariosGrupo(nomeGrupo);
+            break;
+        case "!listGroups":
+            listarGrupos();
+            break;
+        default:
+                System.out.println("Comando desconhecido. Por favor, tente novamente.");
         }
     }
 }
