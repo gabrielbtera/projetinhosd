@@ -1,9 +1,12 @@
-package br.ufs.dcomp.ChatRabbitMQ;
+package br.ufs.dcomp.ChatRabbitMQ.api;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 public class APIClient {
     private String host = "http://localhost:15672/api/";
@@ -30,9 +33,11 @@ public class APIClient {
     public void getUsers(String exchangeName) {
         try {
             String url = host + "/exchanges/%2F/" + exchangeName + "/bindings/source";
-            System.out.println("Sending request to: " + url);
-            String response = sendRequest(url);
-            System.out.println(response);
+            String json = sendRequest(url);
+            List<ExchangeBinding> bindings = ExchangeBinding.deserialize(json);
+            String usernames = bindings.stream().map(binding -> binding.destination).collect(Collectors.joining(", "));
+
+            System.out.println(usernames);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,6 +1,7 @@
 package br.ufs.dcomp.ChatRabbitMQ;
+import br.ufs.dcomp.ChatRabbitMQ.api.APIClient;
 import com.rabbitmq.client.*;
-import java.util.*;
+
 import java.io.IOException;
 public class Grupo{
 
