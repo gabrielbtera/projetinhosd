@@ -7,11 +7,15 @@ public class Grupo{
 // -------------------------------- GERENCIANDO GRUPO --------------------------------------- 
     public Channel channel;
     public Channel channelArquivo;
+
+    private APIClient client;
+
     Mensagem msg = new Mensagem();
 
-    public Grupo(Channel channel, Channel channelArquivo){
+    public Grupo(Channel channel, Channel channelArquivo, APIClient client){
         this.channel = channel;
         this.channelArquivo = channelArquivo;
+        this.client = client;
     }
 
     //Criando grupos
@@ -43,7 +47,7 @@ public class Grupo{
             channel.queueBind(usuario,nomeGrupo,"");
             channel.queueBind(usuario + "F",nomeGrupo + "F","");
         }catch(IOException ex){
-            System.out.println (ex.toString());
+            System.out.println (ex.getMessage());
         }
     }
     
@@ -75,6 +79,10 @@ public class Grupo{
         }
     }
 
+    public void listarUsuariosGrupo(String grupo) {
+        client.getUsers(grupo);
+    }
+
     public void verificaMensagem(String line, String usuario, String destino, String grupo) throws Exception{
         String[] mensagem = line.split(" ");
         switch(mensagem[0]){
@@ -101,7 +109,11 @@ public class Grupo{
           case "!upload":
             enviarArquivo(mensagem[1], destino, usuario, grupo);
             System.out.println("arquivo enviado com sucesso!");
-            break;  
+            break;
+            case "!listUsers":
+                String nomeGrupo = mensagem[1];
+                listarUsuariosGrupo(nomeGrupo);
+                break;
         }
     }
 }

@@ -13,10 +13,14 @@ public class Chat {
   public static void main(String[] argv) throws Exception {
     ConnectionFactory factory = new ConnectionFactory();
 
-    String ipHost = "54.174.241.241";
-    String login = "gabrielbtera";
-    String key = "123456789";
-    
+    // String ipHost = "54.174.241.241";
+    // String login = "gabrielbtera";
+    // String key = "123456789";
+
+    String ipHost = "54.87.169.97";
+    String login= "admin";
+    String key = "password";
+
     factory.setHost(ipHost); // Alterar
     factory.setUsername(login); // Alterar
     factory.setPassword(key); // Alterar
@@ -31,7 +35,7 @@ public class Chat {
     Channel channel_arquivos = connection.createChannel();
 
     Scanner sc = new Scanner(System.in);
-    Grupo grupo = new Grupo(channel, channel_arquivos);
+    Grupo grupo = new Grupo(channel, channel_arquivos, new APIClient("http://" + ipHost, login, key));
 
     Mensagem msg = new Mensagem();
 
