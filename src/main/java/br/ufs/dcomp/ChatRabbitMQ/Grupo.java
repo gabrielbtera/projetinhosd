@@ -10,13 +10,14 @@ public class Grupo{
     public Channel channelArquivo;
 
     private APIClient client;
-
+    private String username;
     Mensagem msg = new Mensagem();
 
-    public Grupo(Channel channel, Channel channelArquivo, APIClient client){
+    public Grupo(Channel channel, Channel channelArquivo, APIClient client, String username){
         this.channel = channel;
         this.channelArquivo = channelArquivo;
         this.client = client;
+        this.username = username;
     }
 
     //Criando grupos
@@ -84,6 +85,10 @@ public class Grupo{
         client.getUsers(grupo);
     }
 
+    public void listarGrupos() {
+        client.getGroups(username);
+    }
+
     public void verificaMensagem(String line, String usuario, String destino, String grupo) throws Exception{
         String[] mensagem = line.split(" ");
         switch(mensagem[0]){
@@ -111,10 +116,15 @@ public class Grupo{
             enviarArquivo(mensagem[1], destino, usuario, grupo);
             System.out.println("arquivo enviado com sucesso!");
             break;
-            case "!listUsers":
-                String nomeGrupo = mensagem[1];
-                listarUsuariosGrupo(nomeGrupo);
-                break;
+        case "!listUsers":
+            String nomeGrupo = mensagem[1];
+            listarUsuariosGrupo(nomeGrupo);
+            break;
+        case "!listGroups":
+            listarGrupos();
+            break;
+        default:
+                System.out.println("Comando desconhecido. Por favor, tente novamente.");
         }
     }
 }

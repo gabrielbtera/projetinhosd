@@ -5,24 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8dc183c2-6688-47ba-8b5f-0b70933d183e" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/br/ufs/dcomp/ChatRabbitMQ/api/ExchangeBinding.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_5_6_0.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ChatRabbitMQ.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ChatRabbitMQ.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/br/ufs/dcomp/ChatRabbitMQ/APIClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/ufs/dcomp/ChatRabbitMQ/api/APIClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/ufs/dcomp/ChatRabbitMQ/Chat.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/ufs/dcomp/ChatRabbitMQ/Chat.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/br/ufs/dcomp/ChatRabbitMQ/Grupo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/ufs/dcomp/ChatRabbitMQ/Grupo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/ufs/dcomp/ChatRabbitMQ/MensagemProto$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/ufs/dcomp/ChatRabbitMQ/MensagemProto$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/ufs/dcomp/ChatRabbitMQ/MensagemProto$Conteudo$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/ufs/dcomp/ChatRabbitMQ/MensagemProto$Conteudo$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/ufs/dcomp/ChatRabbitMQ/MensagemProto$Conteudo$Builder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/ufs/dcomp/ChatRabbitMQ/MensagemProto$Conteudo$Builder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/ufs/dcomp/ChatRabbitMQ/MensagemProto$Conteudo.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/ufs/dcomp/ChatRabbitMQ/MensagemProto$Conteudo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/ufs/dcomp/ChatRabbitMQ/MensagemProto$ConteudoOrBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/ufs/dcomp/ChatRabbitMQ/MensagemProto$ConteudoOrBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/ufs/dcomp/ChatRabbitMQ/MensagemProto$Mensagem$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/ufs/dcomp/ChatRabbitMQ/MensagemProto$Mensagem$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/ufs/dcomp/ChatRabbitMQ/MensagemProto$Mensagem$Builder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/ufs/dcomp/ChatRabbitMQ/MensagemProto$Mensagem$Builder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/ufs/dcomp/ChatRabbitMQ/MensagemProto$Mensagem.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/ufs/dcomp/ChatRabbitMQ/MensagemProto$Mensagem.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/ufs/dcomp/ChatRabbitMQ/MensagemProto$MensagemOrBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/ufs/dcomp/ChatRabbitMQ/MensagemProto$MensagemOrBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/br/ufs/dcomp/ChatRabbitMQ/MensagemProto.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/br/ufs/dcomp/ChatRabbitMQ/MensagemProto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/br/ufs/dcomp/ChatRabbitMQ/api/APIClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/br/ufs/dcomp/ChatRabbitMQ/api/APIClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,7 +165,7 @@
       <workItem from="1677933631825" duration="4693000" />
       <workItem from="1683766577151" duration="4923000" />
       <workItem from="1683803210793" duration="1585000" />
-      <workItem from="1683806865384" duration="2444000" />
+      <workItem from="1683806865384" duration="3992000" />
     </task>
     <servers />
   </component>

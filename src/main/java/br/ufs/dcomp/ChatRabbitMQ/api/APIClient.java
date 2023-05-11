@@ -19,12 +19,13 @@ public class APIClient {
         this.password = password;
     }
 
-    public void getGroups(String queueName) {
+    public void getGroups(String username) {
         try {
-            String url = host + "queues/" + queueName;
-            String response = sendRequest(url);
-            System.out.println("Exchanges declared in the queue " + queueName + ":");
-            System.out.println(response);
+            String url = host + "/queues/%2F/" + username + "/bindings";
+            String json = sendRequest(url);
+            List<ExchangeBinding> bindings = ExchangeBinding.deserialize(json);
+            String groups = bindings.stream().map(binding -> binding.source).filter(source -> !source.isEmpty()).collect(Collectors.joining(", "));
+            System.out.println(groups);
         } catch (IOException e) {
             e.printStackTrace();
         }

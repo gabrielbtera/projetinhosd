@@ -35,13 +35,12 @@ public class Chat {
     Channel channel_arquivos = connection.createChannel();
 
     Scanner sc = new Scanner(System.in);
-    Grupo grupo = new Grupo(channel, channel_arquivos, new APIClient("http://" + ipHost, login, key));
+    System.out.print("User: ");
+    String user = sc.nextLine();
+
+    Grupo grupo = new Grupo(channel, channel_arquivos, new APIClient("http://" + ipHost, login, key), user);
 
     Mensagem msg = new Mensagem();
-
-    System.out.print("User: ");
-    
-    String user = sc.nextLine();
     String nomeGrupo = "";
     msg.criarDiretorio(user);
     String QUEUE_NAME = user;
